@@ -1,0 +1,57 @@
+--- a/net/minecraft/server/ChunkMap.java
++++ b/net/minecraft/server/ChunkMap.java
+@@ -31,6 +31,23 @@
+             }
+         }
+ 
++        // CraftBukkit start
++        // Update neighbor counts
++        for (int x = -2; x < 3; x++) {
++            for (int z = -2; z < 3; z++) {
++                if (x == 0 && z == 0) {
++                    continue;
++                }
++
++                Chunk neighbor = this.get(ChunkCoordIntPair.a(chunkcoordintpair.x + x, chunkcoordintpair.z + z));
++                if (neighbor != null) {
++                    neighbor.setNeighborLoaded(-x, -z);
++                    chunk.setNeighborLoaded(x, z);
++                }
++            }
++        }
++        // CraftBukkit end
++
+         return chunk1;
+     }
+ 
+@@ -69,23 +86,25 @@
+         throw new RuntimeException("Not yet implemented");
+     }
+ 
+-    public Object remove(long i) {
++    // CraftBukkit start - decompile errors
++    public Chunk remove(long i) {
+         return this.a(i);
+     }
+ 
+-    public Object put(long i, Object object) {
++    public Chunk put(long i, Chunk object) {
+         return this.a(i, (Chunk) object);
+     }
+ 
+-    public Object remove(Object object) {
++    public Chunk remove(Object object) {
+         return this.a(object);
+     }
+ 
+-    public Object put(Long olong, Object object) {
++    public Chunk put(Long olong, Chunk object) {
+         return this.a(olong, (Chunk) object);
+     }
+ 
+-    public Object put(Object object, Object object1) {
++    public Object put(Object object, Chunk object1) {
+         return this.a((Long) object, (Chunk) object1);
+     }
++    // CraftBukkit end
+ }

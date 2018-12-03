@@ -1,0 +1,247 @@
+--- a/net/minecraft/server/Chunk.java
++++ b/net/minecraft/server/Chunk.java
+@@ -22,6 +22,8 @@
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
+ 
++import com.google.common.collect.Lists; // CraftBukkit
++
+ public class Chunk implements IChunkAccess {
+ 
+     private static final Logger d = LogManager.getLogger();
+@@ -57,6 +59,35 @@
+     private final AtomicInteger E;
+     private final ChunkCoordIntPair F;
+ 
++    // CraftBukkit start - Neighbor loaded cache for chunk lighting and entity ticking
++    private int neighbors = 0x1 << 12;
++    public long chunkKey;
++
++    public boolean areNeighborsLoaded(final int radius) {
++        switch (radius) {
++            case 2:
++                return this.neighbors == Integer.MAX_VALUE >> 6;
++            case 1:
++                final int mask =
++                        //       x        z   offset          x        z   offset          x         z   offset
++                        (0x1 << (1 * 5 +  1 + 12)) | (0x1 << (0 * 5 +  1 + 12)) | (0x1 << (-1 * 5 +  1 + 12)) |
++                        (0x1 << (1 * 5 +  0 + 12)) | (0x1 << (0 * 5 +  0 + 12)) | (0x1 << (-1 * 5 +  0 + 12)) |
++                        (0x1 << (1 * 5 + -1 + 12)) | (0x1 << (0 * 5 + -1 + 12)) | (0x1 << (-1 * 5 + -1 + 12));
++                return (this.neighbors & mask) == mask;
++            default:
++                throw new UnsupportedOperationException(String.valueOf(radius));
++        }
++    }
++
++    public void setNeighborLoaded(final int x, final int z) {
++        this.neighbors |= 0x1 << (x * 5 + 12 + z);
++    }
++
++    public void setNeighborUnloaded(final int x, final int z) {
++        this.neighbors &= ~(0x1 << (x * 5 + 12 + z));
++    }
++    // CraftBukkit end
++
+     public Chunk(World world, int i, int j, BiomeBase[] abiomebase, ChunkConverter chunkconverter, TickList<Block> ticklist, TickList<FluidType> ticklist1, long k) {
+         this.sections = new ChunkSection[16];
+         this.g = new boolean[256];
+@@ -95,8 +126,16 @@
+         this.s = ticklist;
+         this.t = ticklist1;
+         this.z = k;
++        // CraftBukkit start
++        this.bukkitChunk = new org.bukkit.craftbukkit.CraftChunk(this);
++        this.chunkKey = ChunkCoordIntPair.a(this.locX, this.locZ);
+     }
+ 
++    public org.bukkit.Chunk bukkitChunk;
++    public boolean mustSave;
++    private boolean needsDecoration;
++    // CraftBukkit end
++
+     public Chunk(World world, ProtoChunk protochunk, int i, int j) {
+         this(world, i, j, protochunk.getBiomeIndex(), protochunk.v(), protochunk.n(), protochunk.o(), protochunk.m());
+ 
+@@ -136,14 +175,15 @@
+             HeightMap.Type heightmap_type = (HeightMap.Type) iterator.next();
+ 
+             if (heightmap_type.c() == HeightMap.Use.LIVE_WORLD) {
+-                ((HeightMap) this.heightMap.computeIfAbsent(heightmap_type, (heightmap_type) -> {
+-                    return new HeightMap(this, heightmap_type);
++                ((HeightMap) this.heightMap.computeIfAbsent(heightmap_type, (heightmap_type1) -> { // CraftBukkit - decompile error
++                    return new HeightMap(this, heightmap_type1); // CraftBukkit - decompile error
+                 })).a(protochunk.b(heightmap_type).b());
+             }
+         }
+ 
+         this.x = true;
+         this.a(ChunkStatus.FULLCHUNK);
++        this.needsDecoration = true; // CraftBukkit
+     }
+ 
+     public Set<BlockPosition> t() {
+@@ -413,8 +453,15 @@
+         }
+     }
+ 
++    // CraftBukkit start
+     @Nullable
+     public IBlockData setType(BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
++        return this.setType(blockposition, iblockdata, flag, true);
++    }
++
++    @Nullable
++    public IBlockData setType(BlockPosition blockposition, IBlockData iblockdata, boolean flag, boolean doPlace) {
++        // CraftBukkit end
+         int i = blockposition.getX() & 15;
+         int j = blockposition.getY();
+         int k = blockposition.getZ() & 15;
+@@ -474,7 +521,8 @@
+                     }
+                 }
+ 
+-                if (!this.world.isClientSide) {
++                // CraftBukkit - Don't place while processing the BlockPlaceEvent, unless it's a BlockContainer. Prevents blocks such as TNT from activating when cancelled.
++                if (!this.world.isClientSide && doPlace && (!this.world.captureBlockStates || block instanceof BlockTileEntity)) {
+                     iblockdata.onPlace(this.world, blockposition, iblockdata1);
+                 }
+ 
+@@ -654,7 +702,12 @@
+ 
+     @Nullable
+     public TileEntity a(BlockPosition blockposition, Chunk.EnumTileEntityState chunk_enumtileentitystate) {
+-        TileEntity tileentity = (TileEntity) this.tileEntities.get(blockposition);
++        // CraftBukkit start
++        TileEntity tileentity = world.capturedTileEntities.get(blockposition);
++        if (tileentity == null) {
++            tileentity = (TileEntity) this.tileEntities.get(blockposition);
++        }
++        // CraftBukkit end
+ 
+         if (tileentity == null) {
+             NBTTagCompound nbttagcompound = (NBTTagCompound) this.h.remove(blockposition);
+@@ -701,6 +754,13 @@
+ 
+             tileentity.z();
+             this.tileEntities.put(blockposition.h(), tileentity);
++            // CraftBukkit start
++        } else {
++            System.out.println("Attempted to place a tile entity (" + tileentity + ") at " + tileentity.position.getX() + "," + tileentity.position.getY() + "," + tileentity.position.getZ()
++                + " (" + getType(blockposition) + ") where there was no entity tile!");
++            System.out.println("Chunk coordinates: " + (this.locX * 16) + "," + (this.locZ * 16));
++            new Exception().printStackTrace();
++            // CraftBukkit end
+         }
+     }
+ 
+@@ -733,6 +793,40 @@
+             }));
+         }
+ 
++        // CraftBukkit start
++        org.bukkit.Server server = this.world.getServer();
++        if (server != null) {
++            /*
++             * If it's a new world, the first few chunks are generated inside
++             * the World constructor. We can't reliably alter that, so we have
++             * no way of creating a CraftWorld/CraftServer at that point.
++             */
++            server.getPluginManager().callEvent(new org.bukkit.event.world.ChunkLoadEvent(this.bukkitChunk, this.needsDecoration));
++
++            if (this.needsDecoration) {
++                BlockSand.instaFall = true;
++                java.util.Random random = new java.util.Random();
++                random.setSeed(world.getSeed());
++                long xRand = random.nextLong() / 2L * 2L + 1L;
++                long zRand = random.nextLong() / 2L * 2L + 1L;
++                random.setSeed((long) locX * xRand + (long) locZ * zRand ^ world.getSeed());
++
++                org.bukkit.World world = this.world.getWorld();
++                if (world != null) {
++                    this.world.populating = true;
++                    try {
++                        for (org.bukkit.generator.BlockPopulator populator : world.getPopulators()) {
++                            populator.populate(world, random, bukkitChunk);
++                        }
++                    } finally {
++                        this.world.populating = false;
++                    }
++                }
++                BlockSand.instaFall = false;
++                server.getPluginManager().callEvent(new org.bukkit.event.world.ChunkPopulateEvent(bukkitChunk));
++            }
++        }
++        // CraftBukkit end
+     }
+ 
+     public void removeEntities() {
+@@ -749,9 +843,21 @@
+         int i = aentityslice.length;
+ 
+         for (int j = 0; j < i; ++j) {
+-            EntitySlice entityslice = aentityslice[j];
++            // CraftBukkit start
++            List<Entity> newList = Lists.newArrayList(aentityslice[j]);
++            java.util.Iterator<Entity> iter = newList.iterator();
++            while (iter.hasNext()) {
++                Entity entity = iter.next();
++
++                // Do not pass along players, as doing so can get them stuck outside of time.
++                // (which for example disables inventory icon updates and prevents block breaking)
++                if (entity instanceof EntityPlayer) {
++                    iter.remove();
++                }
++            }
+ 
+-            this.world.b((Collection) entityslice);
++            this.world.b((Collection) newList);
++            // CraftBukkit end
+         }
+ 
+     }
+@@ -813,8 +919,8 @@
+             while (iterator.hasNext()) {
+                 Entity entity = (Entity) iterator.next();
+ 
+-                if (entity.getBoundingBox().c(axisalignedbb) && (predicate == null || predicate.test(entity))) {
+-                    list.add(entity);
++                if (entity.getBoundingBox().c(axisalignedbb) && (predicate == null || predicate.test((T) entity))) { // CraftBukkit - fix decompile error
++                    list.add((T) entity); // Fix decompile error
+                 }
+             }
+         }
+@@ -1020,13 +1126,13 @@
+ 
+     @Nullable
+     public LongSet b(String s) {
+-        return (LongSet) this.q.computeIfAbsent(s, (s) -> {
++        return (LongSet) this.q.computeIfAbsent(s, (s1) -> { // CraftBukkit - decompile error
+             return new LongOpenHashSet();
+         });
+     }
+ 
+     public void a(String s, long i) {
+-        ((LongSet) this.q.computeIfAbsent(s, (s) -> {
++        ((LongSet) this.q.computeIfAbsent(s, (s1) -> { // CraftBukkit - decompile error
+             return new LongOpenHashSet();
+         })).add(i);
+     }
+@@ -1074,14 +1180,14 @@
+             }
+ 
+             if (this.s instanceof ProtoChunkTickList) {
+-                ((ProtoChunkTickList) this.s).a(this.world.J(), (blockposition) -> {
+-                    return this.world.getType(blockposition).getBlock();
++                ((ProtoChunkTickList<Block>) this.s).a(this.world.J(), (blockposition1) -> { // CraftBukkit - decompile error
++                    return this.world.getType(blockposition1).getBlock();
+                 });
+             }
+ 
+             if (this.t instanceof ProtoChunkTickList) {
+-                ((ProtoChunkTickList) this.t).a(this.world.I(), (blockposition) -> {
+-                    return this.world.b(blockposition).c();
++                ((ProtoChunkTickList<FluidType>) this.t).a(this.world.I(), (blockposition1) -> { // CraftBukkit - decompile error
++                    return this.world.b(blockposition1).c();
+                 });
+             }
+ 

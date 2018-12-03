@@ -1,0 +1,38 @@
+--- a/net/minecraft/server/NetworkManager.java
++++ b/net/minecraft/server/NetworkManager.java
+@@ -103,7 +103,7 @@
+                     if (flag) {
+                         NetworkManager.g.debug("Failed to sent packet", throwable);
+                         this.sendPacket(new PacketPlayOutKickDisconnect(chatmessage), (future) -> {
+-                            this.close(ichatbasecomponent);
++                            this.close(chatmessage); // CraftBukkit - decompile error
+                         });
+                         this.stopReading();
+                     } else {
+@@ -130,7 +130,7 @@
+     }
+ 
+     private static <T extends PacketListener> void a(Packet<T> packet, PacketListener packetlistener) {
+-        packet.a(packetlistener);
++        packet.a((T) packetlistener); // CraftBukkit - decompile error
+     }
+ 
+     public void setPacketListener(PacketListener packetlistener) {
+@@ -241,7 +241,7 @@
+ 
+     public void close(IChatBaseComponent ichatbasecomponent) {
+         if (this.channel.isOpen()) {
+-            this.channel.close().awaitUninterruptibly();
++            this.channel.close(); // We can't wait as this may be called from an event loop.
+             this.n = ichatbasecomponent;
+         }
+ 
+@@ -319,7 +319,7 @@
+         }
+     }
+ 
+-    protected void channelRead0(ChannelHandlerContext channelhandlercontext, Object object) throws Exception {
++    protected void channelRead0(ChannelHandlerContext channelhandlercontext, Packet object) throws Exception { // CraftBukkit - fix decompile error
+         this.a(channelhandlercontext, (Packet) object);
+     }
+ 

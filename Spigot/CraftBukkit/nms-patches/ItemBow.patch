@@ -1,0 +1,63 @@
+--- a/net/minecraft/server/ItemBow.java
++++ b/net/minecraft/server/ItemBow.java
+@@ -1,15 +1,21 @@
+ package net.minecraft.server;
+ 
++import org.bukkit.event.entity.EntityCombustEvent; // CraftBukkit
++
+ public class ItemBow extends Item {
+ 
+     public ItemBow(Item.Info item_info) {
+         super(item_info);
++        // CraftBukkit start - obfuscator went a little crazy
++        /*
+         this.a(new MinecraftKey("pull"), (itemstack, world, entityliving) -> {
+             return entityliving == null ? 0.0F : (entityliving.cW().getItem() != Items.BOW ? 0.0F : (float) (itemstack.k() - entityliving.cX()) / 20.0F);
+         });
+         this.a(new MinecraftKey("pulling"), (itemstack, world, entityliving) -> {
+             return entityliving != null && entityliving.isHandRaised() && entityliving.cW() == itemstack ? 1.0F : 0.0F;
+         });
++        */
++        // CraftBukkit end
+     }
+ 
+     private ItemStack a(EntityHuman entityhuman) {
+@@ -73,7 +79,20 @@
+                         }
+ 
+                         if (EnchantmentManager.getEnchantmentLevel(Enchantments.ARROW_FIRE, itemstack) > 0) {
+-                            entityarrow.setOnFire(100);
++                        // CraftBukkit start - call EntityCombustEvent
++                        EntityCombustEvent event = new EntityCombustEvent(entityarrow.getBukkitEntity(), 100);
++                        entityarrow.world.getServer().getPluginManager().callEvent(event);
++
++                        if (!event.isCancelled()) {
++                            entityarrow.setOnFire(event.getDuration());
++                        }
++                        // CraftBukkit end
++                        }
++                        // CraftBukkit start
++                        org.bukkit.event.entity.EntityShootBowEvent event = org.bukkit.craftbukkit.event.CraftEventFactory.callEntityShootBowEvent(entityhuman, itemstack, entityarrow, f);
++                        if (event.isCancelled()) {
++                            event.getProjectile().remove();
++                            return;
+                         }
+ 
+                         itemstack.damage(1, entityhuman);
+@@ -81,7 +100,15 @@
+                             entityarrow.fromPlayer = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                         }
+ 
+-                        world.addEntity(entityarrow);
++                        if (event.getProjectile() == entityarrow.getBukkitEntity()) {
++                            if (!world.addEntity(entityarrow)) {
++                                if (entityhuman instanceof EntityPlayer) {
++                                    ((EntityPlayer) entityhuman).getBukkitEntity().updateInventory();
++                                }
++                                return;
++                            }
++                        }
++                        // CraftBukkit end
+                     }
+ 
+                     world.a((EntityHuman) null, entityhuman.locX, entityhuman.locY, entityhuman.locZ, SoundEffects.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (ItemBow.i.nextFloat() * 0.4F + 1.2F) + f * 0.5F);

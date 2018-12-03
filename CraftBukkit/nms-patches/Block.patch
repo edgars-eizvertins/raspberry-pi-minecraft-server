@@ -1,0 +1,70 @@
+--- a/net/minecraft/server/Block.java
++++ b/net/minecraft/server/Block.java
+@@ -32,7 +32,7 @@
+     @Nullable
+     private String name;
+     private static final ThreadLocal<Object2ByteLinkedOpenHashMap<Block.a>> q = ThreadLocal.withInitial(() -> {
+-        Object2ByteLinkedOpenHashMap object2bytelinkedopenhashmap = new Object2ByteLinkedOpenHashMap(200) {
++        Object2ByteLinkedOpenHashMap object2bytelinkedopenhashmap = new Object2ByteLinkedOpenHashMap<Block.a>(200) { // CraftBukkit - decompile error
+             protected void rehash(int i) {}
+         };
+ 
+@@ -194,7 +194,7 @@
+     }
+ 
+     public Block(Block.Info block_info) {
+-        BlockStateList.a blockstatelist_a = new BlockStateList.a(this);
++        BlockStateList.a<Block, IBlockData> blockstatelist_a = new BlockStateList.a(this); // CraftBukkit - decompile error
+ 
+         this.a(blockstatelist_a);
+         this.blockStateList = blockstatelist_a.a(BlockData::new);
+@@ -409,7 +409,8 @@
+             int j = this.getDropCount(iblockdata, i, world, blockposition, world.random);
+ 
+             for (int k = 0; k < j; ++k) {
+-                if (f >= 1.0F || world.random.nextFloat() <= f) {
++                // CraftBukkit - <= to < to allow for plugins to completely disable block drops from explosions
++                if (f >= 1.0F || world.random.nextFloat() < f) {
+                     Item item = this.getDropType(iblockdata, world, blockposition, i).getItem();
+ 
+                     if (item != Items.AIR) {
+@@ -430,7 +431,13 @@
+             EntityItem entityitem = new EntityItem(world, (double) blockposition.getX() + d0, (double) blockposition.getY() + d1, (double) blockposition.getZ() + d2, itemstack);
+ 
+             entityitem.n();
+-            world.addEntity(entityitem);
++            // CraftBukkit start
++            if (world.captureDrops != null) {
++                world.captureDrops.add(entityitem);
++            } else {
++                world.addEntity(entityitem);
++            }
++            // CraftBukkit end
+         }
+     }
+ 
+@@ -649,7 +656,7 @@
+     }
+ 
+     public String toString() {
+-        return "Block{" + IRegistry.BLOCK.getKey(this) + "}";
++        return IRegistry.BLOCK.getKey(this).toString(); // CraftBukkit - cheap hack
+     }
+ 
+     public static boolean c(Block block) {
+@@ -1398,8 +1405,14 @@
+ 
+     }
+ 
++    // CraftBukkit start
++    public int getExpDrop(IBlockData iblockdata, World world, BlockPosition blockposition, int enchantmentLevel) {
++        return 0;
++    }
++    // CraftBukkit end
++
+     private static void a(MinecraftKey minecraftkey, Block block) {
+-        IRegistry.BLOCK.a(minecraftkey, (Object) block);
++        IRegistry.BLOCK.a(minecraftkey, block); // CraftBukkit - decompile error
+     }
+ 
+     private static void a(String s, Block block) {

@@ -1,0 +1,264 @@
+[21:56:22] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[21:56:22] [Server thread/INFO]: Using 4 threads for Netty based IO
+[21:56:22] [Server thread/INFO]: Debug logging is disabled
+[21:56:22] [Server thread/INFO]: Generating keypair
+[21:56:23] [Server thread/INFO]: Starting Minecraft server on *:25565
+[21:56:23] [Server thread/INFO]: Using default channel type
+[21:56:43] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[21:56:43] [Server thread/INFO]: [AuthMe] Loading AuthMe v5.5.0-SNAPSHOT-b2116
+[21:56:43] [Server thread/INFO]: [WorldEdit] Loading WorldEdit v7.0.0-beta-01;8975469
+[21:56:43] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[21:56:43] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[21:56:43] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[21:56:43] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[21:56:43] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[21:56:43] [Server thread/INFO]: Preparing level "first_world"
+[21:56:43] [Server thread/INFO]: Reloading ResourceManager: Default, bukkit
+[21:56:45] [Server thread/INFO]: Loaded 524 recipes
+[21:56:47] [Server thread/INFO]: -------- World Settings For [first_world] --------
+[21:56:47] [Server thread/INFO]: Mob Spawn Range: 6
+[21:56:47] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313Ocean: 14357621 Shipwreck: 165745295 Slime: 987234911
+[21:56:47] [Server thread/INFO]: Max TNT Explosions: 100
+[21:56:47] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[21:56:47] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Cane Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Melon Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Vine Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[21:56:47] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[21:56:47] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[21:56:47] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[21:56:47] [Server thread/INFO]: Random Lighting Updates: false
+[21:56:47] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[21:56:47] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[21:56:47] [Server thread/INFO]: Item Despawn Rate: 6000
+[21:56:47] [Server thread/INFO]: Item Merge Radius: 2.5
+[21:56:47] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[21:56:47] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[21:56:47] [Server thread/INFO]: View Distance: 10
+[21:56:47] [Server thread/INFO]: Experience Merge Radius: 3.0
+[21:56:48] [Server thread/INFO]: -------- World Settings For [first_world_nether] --------
+[21:56:48] [Server thread/INFO]: Mob Spawn Range: 6
+[21:56:48] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313Ocean: 14357621 Shipwreck: 165745295 Slime: 987234911
+[21:56:48] [Server thread/INFO]: Max TNT Explosions: 100
+[21:56:48] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[21:56:48] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Cane Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Melon Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Vine Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[21:56:48] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[21:56:48] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[21:56:48] [Server thread/INFO]: Random Lighting Updates: false
+[21:56:48] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[21:56:48] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[21:56:48] [Server thread/INFO]: Item Despawn Rate: 6000
+[21:56:48] [Server thread/INFO]: Item Merge Radius: 2.5
+[21:56:48] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[21:56:48] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[21:56:48] [Server thread/INFO]: View Distance: 10
+[21:56:48] [Server thread/INFO]: Experience Merge Radius: 3.0
+[21:56:48] [Server thread/INFO]: -------- World Settings For [first_world_the_end] --------
+[21:56:48] [Server thread/INFO]: Mob Spawn Range: 6
+[21:56:48] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Desert: 14357617 Igloo: 14357618 Jungle: 14357619 Swamp: 14357620 Monument: 10387313Ocean: 14357621 Shipwreck: 165745295 Slime: 987234911
+[21:56:48] [Server thread/INFO]: Max TNT Explosions: 100
+[21:56:48] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[21:56:48] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Cane Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Melon Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Vine Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[21:56:48] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[21:56:48] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[21:56:48] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[21:56:48] [Server thread/INFO]: Random Lighting Updates: false
+[21:56:48] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[21:56:48] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[21:56:48] [Server thread/INFO]: Item Despawn Rate: 6000
+[21:56:48] [Server thread/INFO]: Item Merge Radius: 2.5
+[21:56:48] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[21:56:48] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[21:56:48] [Server thread/INFO]: View Distance: 10
+[21:56:48] [Server thread/INFO]: Experience Merge Radius: 3.0
+[21:56:48] [Server thread/INFO]: Preparing start region for level minecraft:the_end (Seed: 6163277721511608277)
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 4%
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 8%
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 12%
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 16%
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 20%
+[21:56:48] [Server thread/INFO]: Preparing spawn area: 24%
+[21:56:49] [Server thread/INFO]: Preparing spawn area: 28%
+[21:56:49] [Server thread/INFO]: Preparing spawn area: 32%
+[21:56:49] [Server thread/INFO]: Preparing spawn area: 36%
+[21:56:49] [Server thread/INFO]: Preparing spawn area: 40%
+[21:56:49] [Server thread/INFO]: Preparing spawn area: 44%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 48%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 52%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 56%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 60%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 64%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 68%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 72%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 76%
+[21:56:50] [Server thread/INFO]: Preparing spawn area: 80%
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 84%
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 88%
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 92%
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 96%
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 100%
+[21:56:51] [Server thread/INFO]: Preparing start region for level minecraft:the_nether (Seed: 6163277721511608277)
+[21:56:51] [Server thread/INFO]: Preparing spawn area: 4%
+[21:56:52] [Server thread/INFO]: Preparing spawn area: 8%
+[21:56:52] [Server thread/INFO]: Preparing spawn area: 12%
+[21:56:53] [Server thread/INFO]: Preparing spawn area: 16%
+[21:56:53] [Server thread/INFO]: Preparing spawn area: 20%
+[21:56:54] [Server thread/INFO]: Preparing spawn area: 24%
+[21:56:54] [Server thread/INFO]: Preparing spawn area: 28%
+[21:56:55] [Server thread/INFO]: Preparing spawn area: 32%
+[21:56:55] [Server thread/INFO]: Preparing spawn area: 36%
+[21:56:56] [Server thread/INFO]: Preparing spawn area: 40%
+[21:56:56] [Server thread/INFO]: Preparing spawn area: 44%
+[21:56:57] [Server thread/INFO]: Preparing spawn area: 48%
+[21:56:57] [Server thread/INFO]: Preparing spawn area: 52%
+[21:56:58] [Server thread/INFO]: Preparing spawn area: 56%
+[21:56:58] [Server thread/INFO]: Preparing spawn area: 60%
+[21:56:59] [Server thread/INFO]: Preparing spawn area: 64%
+[21:56:59] [Server thread/INFO]: Preparing spawn area: 68%
+[21:57:00] [Server thread/INFO]: Preparing spawn area: 72%
+[21:57:00] [Server thread/INFO]: Preparing spawn area: 76%
+[21:57:01] [Server thread/INFO]: Preparing spawn area: 80%
+[21:57:01] [Server thread/INFO]: Preparing spawn area: 84%
+[21:57:02] [Server thread/INFO]: Preparing spawn area: 88%
+[21:57:02] [Server thread/INFO]: Preparing spawn area: 92%
+[21:57:03] [Server thread/INFO]: Preparing spawn area: 96%
+[21:57:03] [Server thread/INFO]: Preparing spawn area: 100%
+[21:57:03] [Server thread/INFO]: Preparing start region for level minecraft:overworld (Seed: 6163277721511608277)
+[21:57:04] [Server thread/INFO]: Preparing spawn area: 4%
+[21:57:04] [Server thread/INFO]: Preparing spawn area: 8%
+[21:57:05] [Server thread/INFO]: Preparing spawn area: 12%
+[21:57:05] [Server thread/INFO]: Preparing spawn area: 16%
+[21:57:06] [Server thread/INFO]: Preparing spawn area: 20%
+[21:57:06] [Server thread/INFO]: Preparing spawn area: 24%
+[21:57:07] [Server thread/INFO]: Preparing spawn area: 28%
+[21:57:07] [Server thread/INFO]: Preparing spawn area: 32%
+[21:57:08] [Server thread/INFO]: Preparing spawn area: 36%
+[21:57:08] [Server thread/INFO]: Preparing spawn area: 40%
+[21:57:09] [Server thread/INFO]: Preparing spawn area: 44%
+[21:57:09] [Server thread/INFO]: Preparing spawn area: 48%
+[21:57:10] [Server thread/INFO]: Preparing spawn area: 52%
+[21:57:10] [Server thread/INFO]: Preparing spawn area: 56%
+[21:57:11] [Server thread/INFO]: Preparing spawn area: 60%
+[21:57:11] [Server thread/INFO]: Preparing spawn area: 64%
+[21:57:12] [Server thread/INFO]: Preparing spawn area: 68%
+[21:57:12] [Server thread/INFO]: Preparing spawn area: 72%
+[21:57:12] [Server thread/INFO]: Preparing spawn area: 76%
+[21:57:13] [Server thread/INFO]: Preparing spawn area: 80%
+[21:57:13] [Server thread/INFO]: Preparing spawn area: 84%
+[21:57:14] [Server thread/INFO]: Preparing spawn area: 88%
+[21:57:14] [Server thread/INFO]: Preparing spawn area: 92%
+[21:57:14] [Server thread/INFO]: Preparing spawn area: 96%
+[21:57:15] [Server thread/INFO]: Preparing spawn area: 100%
+[21:57:15] [Server thread/INFO]: Time elapsed: 26893 ms
+[21:57:15] [Server thread/INFO]: [AuthMe] Enabling AuthMe v5.5.0-SNAPSHOT-b2116
+[21:57:16] [Server thread/INFO]: [AuthMe] SQLite Setup finished
+[21:57:17] [Server thread/INFO]: [AuthMe] No supported permissions system found! Permissions are disabled!
+[21:57:19] [Server thread/WARN]: [AuthMe] WARNING! The protectInventory feature requires ProtocolLib! Disabling it...
+[21:57:20] [Server thread/INFO]: [AuthMe] Development builds are available on our jenkins, thanks to FastVM.io
+[21:57:20] [Server thread/INFO]: [AuthMe] Do you want a good vps for your game server? Look at our sponsor FastVM.io leader as virtual server provider!
+[21:57:20] [Server thread/INFO]: [AuthMe] AuthMe 5.5.0-SNAPSHOT build n.2116 correctly enabled!
+[21:57:20] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.0.0-beta-01;8975469
+[21:57:21] [Server thread/INFO]: [WorldEdit] Using com.sk89q.worldedit.bukkit.adapter.impl.Spigot_v1_13_R2 as the Bukkit adapter
+[21:57:24] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[21:57:24] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[21:57:24] [Server thread/INFO]: Done (41.210s)! For help, type "help"
+[21:57:24] [Craft Scheduler Thread - 1/INFO]: [AuthMe] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[21:57:30] [Craft Scheduler Thread - 1/WARN]: [AuthMe] Could not download GeoLiteAPI database [IOException]: No space left on device
+[22:07:05] [Server thread/INFO]: [0;32;1mThis server is running AuthMeReloaded v5.5.0-SNAPSHOT b2116! [0;31;1m<3[m
+[22:07:05] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme help[0;33;1m to view help.[m
+[22:07:05] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme about[0;33;1m to view about.[m
+[22:07:21] [Server thread/INFO]: Unknown command. Type "/help" for help.[m
+[22:07:29] [Server thread/INFO]: [0;33;1m--------- [0;37;1mHelp: AuthMe [0;33;1m--------------------------[m
+[22:07:29] [Server thread/INFO]: [0;37;22mBelow is a list of all AuthMe commands:[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/authme: [0;37;1mAuthMe op commands[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/captcha: [0;37;1mCaptcha command[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/changepassword: [0;37;1mChange password of an account[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/email: [0;37;1mAdd email or recover password[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/login: [0;37;1mLogin command[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/logout: [0;37;1mLogout command[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/register: [0;37;1mRegister an account[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/totp: [0;37;1mTOTP commands[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/unregister: [0;37;1mUnregister an account[m
+[22:07:29] [Server thread/INFO]: [0;33;22m/verification: [0;37;1mVerification command[m
+[22:07:36] [Server thread/INFO]: Unknown command. Type "/help" for help.[m
+[22:07:38] [Server thread/INFO]: Unknown command. Type "/help" for help.[m
+[22:07:57] [Server thread/INFO]: [0;31;1mUsage: /unregister <password>[m
+[22:08:14] [Server thread/INFO]: [0;32;1mThis server is running AuthMeReloaded v5.5.0-SNAPSHOT b2116! [0;31;1m<3[m
+[22:08:14] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme help[0;33;1m to view help.[m
+[22:08:14] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme about[0;33;1m to view about.[m
+[22:08:21] [Server thread/INFO]: Unknown command. Type "/help" for help.[m
+[22:08:26] [Server thread/INFO]: [0;32;1mThis server is running AuthMeReloaded v5.5.0-SNAPSHOT b2116! [0;31;1m<3[m
+[22:08:26] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme help[0;33;1m to view help.[m
+[22:08:26] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme about[0;33;1m to view about.[m
+[22:08:30] [Server thread/INFO]: [0;31;22mUnknown command![m
+[22:08:30] [Server thread/INFO]: [0;33;1mDid you mean [0;33;22m/authme email[0;33;1m?[m
+[22:08:30] [Server thread/INFO]: [0;33;1mUse the command [0;33;22m/authme help[0;33;1m to view help.[m
+[22:09:40] [User Authenticator #1/INFO]: UUID of player RunnerMan is 6930b8e1-7531-302a-b12b-d717adc19187
+[22:09:46] [Server thread/INFO]: RunnerMan[/fd01:0:0:0:484f:672d:36f3:aa95:49217] logged in with entity id 315 at ([first_world]-208.47371080457475, 75.0, -171.9234640727091)
+[22:10:03] [Craft Scheduler Thread - 4/INFO]: [AuthMe] RunnerMan logged in!
+[22:10:22] [Server thread/INFO]: RunnerMan issued server command: /authm
+[22:10:35] [Server thread/INFO]: RunnerMan issued server command: /authme:changepass
+[22:11:11] [Craft Scheduler Thread - 5/INFO]: [AuthMe] RunnerMan changed his password
+[22:12:17] [Async Chat Thread - #0/INFO]: <RunnerMan> exit[m
+[22:12:22] [Server thread/INFO]: RunnerMan issued server command: /exit
+[22:12:27] [Server thread/INFO]: RunnerMan issued server command: /help
+[22:12:59] [Server thread/INFO]: RunnerMan lost connection: Disconnected
+[22:12:59] [Server thread/INFO]: RunnerMan left the game
+[22:13:07] [Server thread/INFO]: Unknown command. Type "/help" for help.[m
+[22:13:10] [Server thread/INFO]: [0;33;22m==========[ AuthMeReloaded HELP ]==========[m
+[22:13:10] [Server thread/INFO]: [0;33;22mCommand: [0;37;1m/authme[0;33;1m[m
+[22:13:10] [Server thread/INFO]: [0;33;22mShort description: [0;37;1mAuthMe op commands[m
+[22:13:10] [Server thread/INFO]: [0;33;22mCommands:[m
+[22:13:10] [Server thread/INFO]:  /authme register[0;37;22m[3m: Register a player[m
+[22:13:10] [Server thread/INFO]:  /authme unregister[0;37;22m[3m: Unregister a player[m
+[22:13:10] [Server thread/INFO]:  /authme forcelogin[0;37;22m[3m: Enforce login player[m
+[22:13:10] [Server thread/INFO]:  /authme password[0;37;22m[3m: Change a player's password[m
+[22:13:10] [Server thread/INFO]:  /authme lastlogin[0;37;22m[3m: Player's last login[m
+[22:13:10] [Server thread/INFO]:  /authme accounts[0;37;22m[3m: Display player accounts[m
+[22:13:10] [Server thread/INFO]:  /authme email[0;37;22m[3m: Display player's email[m
+[22:13:10] [Server thread/INFO]:  /authme setemail[0;37;22m[3m: Change player's email[m
+[22:13:10] [Server thread/INFO]:  /authme getip[0;37;22m[3m: Get player's IP[m
+[22:13:10] [Server thread/INFO]:  /authme spawn[0;37;22m[3m: Teleport to spawn[m
+[22:13:10] [Server thread/INFO]:  /authme setspawn[0;37;22m[3m: Change the spawn[m
+[22:13:10] [Server thread/INFO]:  /authme firstspawn[0;37;22m[3m: Teleport to first spawn[m
+[22:13:10] [Server thread/INFO]:  /authme setfirstspawn[0;37;22m[3m: Change the first spawn[m
+[22:13:10] [Server thread/INFO]:  /authme purge[0;37;22m[3m: Purge old data[m
+[22:13:10] [Server thread/INFO]:  /authme purgeplayer[0;37;22m[3m: Purges the data of one player[m
+[22:13:10] [Server thread/INFO]:  /authme backup[0;37;22m[3m: Perform a backup[m
+[22:13:10] [Server thread/INFO]:  /authme resetpos[0;37;22m[3m: Purge player's last position[m
+[22:13:10] [Server thread/INFO]:  /authme purgebannedplayers[0;37;22m[3m: Purge banned players data[m
+[22:13:10] [Server thread/INFO]:  /authme switchantibot[0;37;22m[3m: Switch AntiBot mode[m
+[22:13:10] [Server thread/INFO]:  /authme reload[0;37;22m[3m: Reload plugin[m
+[22:13:10] [Server thread/INFO]:  /authme version[0;37;22m[3m: Version info[m
+[22:13:10] [Server thread/INFO]:  /authme converter[0;37;22m[3m: Converter command[m
+[22:13:10] [Server thread/INFO]:  /authme messages[0;37;22m[3m: Add missing help messages[m
+[22:13:10] [Server thread/INFO]:  /authme recent[0;37;22m[3m: See players who have recently logged in[m
+[22:13:10] [Server thread/INFO]:  /authme debug[0;37;22m[3m: Debug features[m
+[22:13:10] [Server thread/INFO]:  /authme help[0;37;22m[3m: View help[m
+[22:13:37] [Craft Scheduler Thread - 6/INFO]: [0;31;1mThis user isn't registered![m
+[22:14:38] [Thread-3/INFO]: Stopping server

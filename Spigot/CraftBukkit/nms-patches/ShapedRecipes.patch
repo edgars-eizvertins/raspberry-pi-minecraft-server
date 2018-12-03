@@ -1,0 +1,101 @@
+--- a/net/minecraft/server/ShapedRecipes.java
++++ b/net/minecraft/server/ShapedRecipes.java
+@@ -13,6 +13,13 @@
+ import java.util.Iterator;
+ import java.util.Map;
+ import java.util.Map.Entry;
++// CraftBukkit start
++import java.util.ArrayList;
++import java.util.List;
++import org.bukkit.craftbukkit.inventory.CraftItemStack;
++import org.bukkit.craftbukkit.inventory.CraftShapedRecipe;
++import org.bukkit.craftbukkit.util.CraftMagicNumbers;
++// CraftBukkit end
+ 
+ public class ShapedRecipes implements IRecipe {
+ 
+@@ -32,6 +39,70 @@
+         this.result = itemstack;
+     }
+ 
++    // CraftBukkit start
++    public org.bukkit.inventory.ShapedRecipe toBukkitRecipe() {
++        CraftItemStack result = CraftItemStack.asCraftMirror(this.result);
++        CraftShapedRecipe recipe = new CraftShapedRecipe(result, this);
++        recipe.setGroup(this.group);
++
++        switch (this.height) {
++        case 1:
++            switch (this.width) {
++            case 1:
++                recipe.shape("a");
++                break;
++            case 2:
++                recipe.shape("ab");
++                break;
++            case 3:
++                recipe.shape("abc");
++                break;
++            }
++            break;
++        case 2:
++            switch (this.width) {
++            case 1:
++                recipe.shape("a","b");
++                break;
++            case 2:
++                recipe.shape("ab","cd");
++                break;
++            case 3:
++                recipe.shape("abc","def");
++                break;
++            }
++            break;
++        case 3:
++            switch (this.width) {
++            case 1:
++                recipe.shape("a","b","c");
++                break;
++            case 2:
++                recipe.shape("ab","cd","ef");
++                break;
++            case 3:
++                recipe.shape("abc","def","ghi");
++                break;
++            }
++            break;
++        }
++        char c = 'a';
++        for (RecipeItemStack list : this.items) {
++            list.buildChoices();
++            if (list.choices.length > 0) {
++                List<org.bukkit.Material> choices = new ArrayList<>(list.choices.length);
++                for (ItemStack i : list.choices) {
++                    choices.add(CraftMagicNumbers.getMaterial(i.getItem()));
++                }
++
++                recipe.setIngredient(c, new org.bukkit.inventory.RecipeChoice.MaterialChoice(choices));
++            }
++            c++;
++        }
++        return recipe;
++    }
++    // CraftBukkit end
++
+     public MinecraftKey getKey() {
+         return this.key;
+     }
+@@ -302,11 +373,11 @@
+             packetdataserializer.a(shapedrecipes.result);
+         }
+ 
+-        public IRecipe a(MinecraftKey minecraftkey, PacketDataSerializer packetdataserializer) {
++        public ShapedRecipes a(MinecraftKey minecraftkey, PacketDataSerializer packetdataserializer) { // CraftBukkit - decompile error
+             return this.b(minecraftkey, packetdataserializer);
+         }
+ 
+-        public IRecipe a(MinecraftKey minecraftkey, JsonObject jsonobject) {
++        public ShapedRecipes a(MinecraftKey minecraftkey, JsonObject jsonobject) { // CraftBukkit - decompile error
+             return this.b(minecraftkey, jsonobject);
+         }
+     }

@@ -1,0 +1,33 @@
+--- a/net/minecraft/server/CommandSpreadPlayers.java
++++ b/net/minecraft/server/CommandSpreadPlayers.java
+@@ -269,7 +269,7 @@
+                 }
+ 
+                 blockposition = blockposition.down();
+-            } while (iblockaccess.getType(blockposition).isAir());
++            } while (getType(iblockaccess, blockposition).isAir()); // CraftBukkit
+ 
+             return blockposition.getY() + 1;
+         }
+@@ -285,7 +285,7 @@
+                 }
+ 
+                 blockposition = blockposition.down();
+-                iblockdata = iblockaccess.getType(blockposition);
++                iblockdata = getType(iblockaccess, blockposition); // CraftBukkit
+             } while (iblockdata.isAir());
+ 
+             Material material = iblockdata.getMaterial();
+@@ -297,5 +297,12 @@
+             this.a = MathHelper.a(random, d0, d2);
+             this.b = MathHelper.a(random, d1, d3);
+         }
++
++        // CraftBukkit start - add a version of getType which force loads chunks
++        private static IBlockData getType(IBlockAccess iblockaccess, BlockPosition position) {
++            ((ChunkProviderServer) ((World) iblockaccess).chunkProvider).getChunkAt(position.getX() >> 4, position.getZ() >> 4, true, true);
++            return iblockaccess.getType(position);
++        }
++        // CraftBukkit end
+     }
+ }
